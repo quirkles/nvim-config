@@ -5,6 +5,15 @@
 -- Quick "open directory in Neotree" via aliases (see lua/config/dirs.lua)
 require("config.dirs").setup()
 
+-- Exit insert mode by rolling `jk`. Both orders are mapped, since a fast roll
+-- lands the two keys out of sequence often enough to be annoying.
+-- A lone `j` is held back for `timeoutlen` (300ms) before it is inserted, but
+-- only when nothing follows it: the next keystroke resolves the ambiguity
+-- immediately, so this is invisible at typing speed. Neither `jk` nor `kj`
+-- occurs in an English word, so it does not misfire on prose.
+vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
+vim.keymap.set("i", "kj", "<Esc>", { desc = "Exit insert mode" })
+
 -- Multicursor: add a cursor above/below on Ctrl+Up / Ctrl+Down.
 -- LazyVim binds these to "resize window height" by default; we override that
 -- here so they drive vim-visual-multi instead (its own default too, but our
