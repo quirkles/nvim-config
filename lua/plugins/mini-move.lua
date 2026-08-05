@@ -1,6 +1,6 @@
 -- Move the active Visual selection while keeping it selected afterwards.
 return {
-  "echasnovski/mini.move",
+  "nvim-mini/mini.move",
   opts = {
     mappings = {
       up = "<M-S-Up>",
